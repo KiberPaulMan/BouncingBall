@@ -9,20 +9,37 @@ st = Settings()
 turtle.setup(st.screen_width, st.screen_height)
 turtle.bgcolor(st.screen_color)
 
-# Скрывает иконку черепахи и траекторию движения
-# turtle.hideturtle()
+# Скрывает траекторию движения
 turtle.penup()
 
 # Отображает круг
-turtle.shape('circle')  # dot(st.radius, st.ball_color)
+turtle.shape('circle')
 turtle.shapesize(1)
-# Задает скорость мяча
-turtle.speed(st.ball_speed)
 
-pos_x, pos_y = bm.random_position(st)
-print(pos_x, pos_y)
-turtle.setx(pos_x)
-turtle.sety(pos_y)
+# Задает скорость мяча
+# turtle.speed(st.ball_speed)
+
+# Переход по заданным координатам
+# turtle.setposition(bm.random_position(st))
+
+# Устанавливает угол поворота относительно начального положения
+turtle.setheading(st.angle)
+
+x, y = turtle.position()
+flag = True
+while flag:
+    if (st.l_board_x <= x <= st.r_board_x) and (st.b_board_y <= y <= st.t_board_y):
+        turtle.forward(st.ball_speed)
+        x, y = turtle.position()
+
+    else:
+        turtle.right(45)
+        turtle.forward(st.ball_speed)
+        x, y = turtle.position()
+
+
+# Получает текущую позицию
+# turtle.position()
 
 # Главный цикл
 turtle.mainloop()
